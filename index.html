@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AmiraTravel — Best Hotel Deals in Europe</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+  }
+
+  .avatar {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 20px rgba(247,151,30,0.4);
+  }
+
+  h1 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .bio {
+    color: #aecde0;
+    font-size: 13px;
+    margin-top: 6px;
+    text-align: center;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+
+  .divider {
+    width: 40px; height: 2px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    border-radius: 2px;
+    margin: 20px 0;
+  }
+
+  .section-title {
+    color: #ffd200;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .links-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .link-btn:hover {
+    background: rgba(255,255,255,0.16);
+    transform: translateY(-2px);
+    border-color: rgba(255,210,0,0.4);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .link-btn .flag { font-size: 24px; }
+  .link-btn .text { flex: 1; }
+  .link-btn .text small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: #aecde0;
+    margin-top: 1px;
+  }
+  .link-btn .arrow {
+    color: #ffd200;
+    font-size: 18px;
+  }
+
+  .highlight {
+    background: linear-gradient(135deg, rgba(247,151,30,0.2), rgba(255,210,0,0.1));
+    border-color: rgba(247,151,30,0.4);
+  }
+
+  .footer {
+    margin-top: 36px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .powered {
+    margin-top: 6px;
+    color: rgba(255,255,255,0.2);
+    font-size: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="avatar">✈️</div>
+<h1>amiratravel</h1>
+<p class="bio">🏨 Best hotel deals across Europe<br>🇦🇹🇩🇪🇮🇹🇪🇸🇫🇷🇬🇷 6 countries · Best prices guaranteed</p>
+
+<div class="divider"></div>
+
+<div class="links-container">
+
+  <p class="section-title">🔥 All Europe</p>
+
+  <a class="link-btn highlight" href="https://www.stay22.com/map?aid=amiratravel" target="_blank">
+    <span class="flag">🌍</span>
+    <span class="text">All Europe — Best Deals
+      <small>Compare Booking, Airbnb & more</small>
+    </span>
+    <span class="arrow">›</span>
+  </a>
+
+  <p class="section-title" style="margin-top:10px;">🗺️ By Country</p>
+
+  <a class="link-btn" href="https://www.stay22.com/map?aid=amiratravel&address=Vienna,Austria" target="_blank">
+    <span class="flag">🇦🇹</span>
+    <span class="text">Austria — Hotels
+      <small>Vienna · Salzburg · Innsbruck</small>
+    </span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-btn" href="https://www.stay22.com/map?aid=amiratravel&address=Berlin,Germany" target="_blank">
+    <span class="flag">🇩🇪</span>
+    <span class="text">Germany — Hotels
+      <small>Berlin · Munich · Hamburg</small>
+    </span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-btn" href="https://www.stay22.com/map?aid=amiratravel&address=Rome,Italy" target="_blank">
+    <span class="flag">🇮🇹</span>
+    <span class="text">Italy — Hotels
+      <small>Rome · Florence · Venice</small>
+    </span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-btn" href="https://www.stay22.com/map?aid=amiratravel&address=Barcelona,Spain" target="_blank">
+    <span class="flag">🇪🇸</span>
+    <span class="text">Spain — Hotels
+      <small>Barcelona · Madrid · Seville</small>
+    </span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-btn" href="https://www.stay22.com/map?aid=amiratravel&address=Paris,France" target="_blank">
+    <span class="flag">🇫🇷</span>
+    <span class="text">France — Hotels
+      <small>Paris · Nice · Lyon</small>
+    </span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-btn" href="https://www.stay22.com/map?aid=amiratravel&address=Athens,Greece" target="_blank">
+    <span class="flag">🇬🇷</span>
+    <span class="text">Greece — Hotels
+      <small>Athens · Santorini · Mykonos</small>
+    </span>
+    <span class="arrow">›</span>
+  </a>
+
+</div>
+
+<p class="footer">Best prices · No extra fees · Instant booking</p>
+<p class="powered">Powered by Stay22</p>
+
+</body>
+</html>
