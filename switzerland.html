@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Switzerland Hotels — Best Deals | AmiraTravel</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; font-family: 'Inter', sans-serif; background: #0a1628; display: flex; flex-direction: column; align-items: center; }
+    .hero-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+    .hero-bg::before { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, #0a1628 0%, #0e2a4a 30%, #0d4f6e 55%, #1a7a8a 75%, #26a69a 100%); animation: shiftGrad 12s ease-in-out infinite alternate; }
+    @keyframes shiftGrad { 0% { filter: hue-rotate(0deg) brightness(1); } 100% { filter: hue-rotate(20deg) brightness(1.15); } }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 80px 80px, 120px 120px; background-position: 0 0, 40px 40px; opacity: 0.25; }
+    .container { position: relative; z-index: 1; width: 100%; max-width: 480px; padding: 28px 20px 60px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    .back-btn { align-self: flex-start; display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; text-decoration: none; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 99px; padding: 7px 14px; transition: background 0.18s; }
+    .back-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+    .profile { text-align: center; }
+    .avatar-ring { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #26a69a, #0e7fc8, #e91e8c); padding: 3px; margin-bottom: 12px; }
+    .avatar-ring .inner { width: 100%; height: 100%; border-radius: 50%; background: #0e2a4a; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .profile h1 { font-family: 'Playfair Display', serif; font-size: 26px; color: #fff; letter-spacing: -0.5px; }
+    .profile h1 span { color: #4dd0e1; }
+    .profile p { margin-top: 6px; font-size: 13px; color: rgba(255,255,255,0.65); }
+    .section-label { width: 100%; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.45); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
+    .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.12); }
+    .city-grid { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .city-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 12px 8px; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.18s; text-align: center; }
+    .city-btn:hover, .city-btn.active { background: rgba(77,208,225,0.2); border-color: #4dd0e1; color: #fff; }
+    .widget-wrap { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); backdrop-filter: blur(10px); border-radius: 20px; overflow: hidden; }
+    .widget-header { padding: 16px 20px 12px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .widget-header .wh-icon { font-size: 20px; }
+    .widget-header .wh-text h3 { font-size: 14px; font-weight: 600; color: #fff; }
+    .widget-header .wh-text p { font-size: 11px; color: rgba(255,255,255,0.5); }
+    .footer { text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+    .footer a { color: rgba(255,255,255,0.4); text-decoration: none; }</style>
+</head>
+<body>
+<div class="hero-bg"></div>
+<div class="container">
+  <a class="back-btn" href="https://www.travelgo.top/">← AmiraTravel</a>
+  <div class="profile">
+    <div class="avatar-ring"><div class="inner">🇨🇭</div></div>
+    <h1>Switzerland <span>Hotels</span></h1>
+    <p>Best deals in Zurich, Geneva & Lucerne</p>
+  </div>
+  <div class="section-label">Choose a City</div>
+  <div class="city-grid">
+    <button class="city-btn active" onclick="setCity('Zurich, Switzerland', this)">🏦 Zurich</button>
+    <button class="city-btn" onclick="setCity('Geneva, Switzerland', this)">🕊️ Geneva</button>
+    <button class="city-btn" onclick="setCity('Lucerne, Switzerland', this)">🏔️ Lucerne</button>
+  </div>
+  <div class="section-label">Find Your Hotel</div>
+  <div class="widget-wrap">
+    <div class="widget-header">
+      <span class="wh-icon">🏨</span>
+      <div class="wh-text">
+        <h3 id="widget-title">Hotels in Zurich</h3>
+        <p>Powered by Stay22 · Best rate guaranteed</p>
+      </div>
+    </div>
+    <iframe id="stay22-widget" width="100%" height="450"
+      src="https://www.stay22.com/embed/amiratravel?address=Zurich%2C%20Switzerland"
+      frameborder="0" loading="lazy" allow="geolocation"></iframe>
+  </div>
+  <div class="footer">
+    <p>© 2026 AmiraTravel · Powered by Stay22</p>
+    <p style="margin-top:4px"><a href="https://www.travelgo.top">travelgo.top</a></p>
+  </div>
+</div>
+<script>function setCity(address, btn) {
+    document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const city = address.split(',')[0].trim();
+    document.getElementById('widget-title').textContent = 'Hotels in ' + city;
+    document.getElementById('stay22-widget').src =
+      'https://www.stay22.com/embed/amiratravel?address=' + encodeURIComponent(address);
+  }</script>
+</body>
+</html>
