@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Austria Hotels — Best Deals | AmiraTravel</title>
+  <title>Austria Hotels â Best Deals | AmiraTravel</title>
   <style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: 'Inter', sans-serif; background: #0a1628; display: flex; flex-direction: column; align-items: center; }
@@ -36,33 +36,33 @@
 <body>
 <div class="hero-bg"></div>
 <div class="container">
-  <a class="back-btn" href="https://www.travelgo.top/">← AmiraTravel</a>
+  <a class="back-btn" href="https://www.travelgo.top/">â AmiraTravel</a>
   <div class="profile">
-    <div class="avatar-ring"><div class="inner">🇦🇹</div></div>
+    <div class="avatar-ring"><div class="inner">ð¦ð¹</div></div>
     <h1>Austria <span>Hotels</span></h1>
     <p>Best deals in Vienna, Salzburg & Innsbruck</p>
   </div>
   <div class="section-label">Choose a City</div>
   <div class="city-grid">
-    <button class="city-btn active" onclick="setCity('Vienna, Austria', this)">🏰 Vienna</button>
-    <button class="city-btn" onclick="setCity('Salzburg, Austria', this)">🎵 Salzburg</button>
-    <button class="city-btn" onclick="setCity('Innsbruck, Austria', this)">⛷️ Innsbruck</button>
+    <button class="city-btn active" onclick="setCity('Vienna, Austria', this)">ð° Vienna</button>
+    <button class="city-btn" onclick="setCity('Salzburg, Austria', this)">ðµ Salzburg</button>
+    <button class="city-btn" onclick="setCity('Innsbruck, Austria', this)">â·ï¸ Innsbruck</button>
   </div>
   <div class="section-label">Find Your Hotel</div>
   <div class="widget-wrap">
     <div class="widget-header">
-      <span class="wh-icon">🏨</span>
+      <span class="wh-icon">ð¨</span>
       <div class="wh-text">
         <h3 id="widget-title">Hotels in Vienna</h3>
-        <p>Powered by Stay22 · Best rate guaranteed</p>
+        <p>Powered by Stay22 Â· Best rate guaranteed</p>
       </div>
     </div>
     <iframe id="stay22-widget" width="100%" height="450"
-      src="https://www.stay22.com/embed/amiratravel?address=Vienna%2C%20Austria"
+      src="https://stay22.com/embed/6a2b37507d1e2d0976002931"
       frameborder="0" loading="lazy" allow="geolocation"></iframe>
   </div>
   <div class="footer">
-    <p>© 2026 AmiraTravel · Powered by Stay22</p>
+    <p>Â© 2026 AmiraTravel Â· Powered by Stay22</p>
     <p style="margin-top:4px"><a href="https://www.travelgo.top">travelgo.top</a></p>
   </div>
 </div>
@@ -72,7 +72,4 @@
     const city = address.split(',')[0].trim();
     document.getElementById('widget-title').textContent = 'Hotels in ' + city;
     document.getElementById('stay22-widget').src =
-      'https://www.stay22.com/embed/amiratravel?address=' + encodeURIComponent(address);
-  }</script>
-</body>
-</html>
+      'https://stay22.com/embed/6a2b37507d1e2d0976002931
