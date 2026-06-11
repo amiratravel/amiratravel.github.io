@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AmiraTravel — Best Hotel Deals in Europe</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── BACKGROUND ── */
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: #0a1628;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Full-bleed hero with animated gradient + overlay */
+    .hero-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg,
+          #0a1628 0%,
+          #0e2a4a 30%,
+          #0d4f6e 55%,
+          #1a7a8a 75%,
+          #26a69a 100%);
+      animation: shiftGrad 12s ease-in-out infinite alternate;
+    }
+    @keyframes shiftGrad {
+      0%   { filter: hue-rotate(0deg) brightness(1); }
+      100% { filter: hue-rotate(20deg) brightness(1.15); }
+    }
+
+    /* Water ripple SVG overlay */
+    .hero-bg svg {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 45%;
+      opacity: 0.18;
+    }
+
+    /* Stars / light-dots */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 80px 80px, 120px 120px;
+      background-position: 0 0, 40px 40px;
+      opacity: 0.25;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      padding: 32px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    /* ── PROFILE ── */
+    .profile {
+      text-align: center;
+    }
+    .avatar-ring {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #26a69a, #0e7fc8, #e91e8c);
+      padding: 3px;
+      margin-bottom: 14px;
+    }
+    .avatar-ring .inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: #0e2a4a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+    }
+    .profile h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .profile h1 span { color: #4dd0e1; }
+    .profile p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.5;
+    }
+    .flags { font-size: 20px; margin-top: 6px; letter-spacing: 2px; }
+
+    /* ── BADGE ROW ── */
+    .badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .badge {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      color: #e0f7fa;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 99px;
+      letter-spacing: 0.3px;
+    }
+    .badge.hot { background: rgba(255,87,34,0.25); border-color: #ff5722; color: #ffab91; }
+    .badge.star { background: rgba(255,193,7,0.2); border-color: #ffc107; color: #ffe082; }
+
+    /* ── SECTION HEADER ── */
+    .section-label {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.45);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* ── BIG CTA CARD ── */
+    .cta-card {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(14px);
+      border-radius: 20px;
+      padding: 22px 22px 24px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: -40%; left: -40%;
+      width: 180%; height: 180%;
+      background: radial-gradient(circle at 50% 50%, rgba(77,208,225,0.12), transparent 60%);
+      pointer-events: none;
+    }
+    .cta-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+    .cta-card .card-icon { font-size: 32px; margin-bottom: 10px; }
+    .cta-card .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .cta-card .card-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+    .cta-card .arrow {
+      position: absolute;
+      right: 20px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      color: #4dd0e1;
+      opacity: 0.8;
+    }
+    .cta-card.fire { border-color: rgba(255,87,34,0.5); }
+    .cta-card.fire::before {
+      background: radial-gradient(circle at 50% 50%, rgba(255,87,34,0.15), transparent 60%);
+    }
+
+    /* ── COUNTRY GRID ── */
+    .country-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .country-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      text-decoration: none;
+      transition: transform 0.18s, background 0.18s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .country-card:hover { transform: translateY(-2px); background: rgba(255,255,255,0.12); }
+    .country-card .cc-flag { font-size: 28px; }
+    .country-card .cc-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .country-card .cc-cities {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── WIDGET SECTION ── */
+    .widget-wrap {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .widget-header {
+      padding: 18px 20px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .widget-header .wh-icon { font-size: 22px; }
+    .widget-header .wh-text h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .widget-header .wh-text p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+    .widget-wrap iframe {
+      display: block;
+      border: none;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.7;
+    }
+    .footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- Animated sea/hotel background -->
+<div class="hero-bg">
+  <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="rgba(255,255,255,1)" d="M0,192L48,186.7C96,181,192,171,288,181.3C384,192,480,224,576,229.3C672,235,768,213,864,197.3C960,181,1056,171,1152,176C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      <animate attributeName="d"
+        dur="8s" repeatCount="indefinite"
+        values="
+          M0,192L48,186.7C96,181,192,171,288,181.3C384,192,480,224,576,229.3C672,235,768,213,864,197.3C960,181,1056,171,1152,176C1248,181,1344,203,1392,213.3L1440,224L1440,320L0,320Z;
+          M0,224L48,213.3C96,203,192,181,288,176C384,171,480,181,576,197.3C672,213,768,235,864,229.3C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L0,320Z;
+          M0,192L48,186.7C96,181,192,171,288,181.3C384,192,480,224,576,229.3C672,235,768,213,864,197.3C960,181,1056,171,1152,176C1248,181,1344,203,1392,213.3L1440,224L1440,320L0,320Z
+        "/>
+    </path>
+    <path fill="rgba(255,255,255,0.5)" d="M0,256L48,261.3C96,267,192,277,288,266.7C384,256,480,224,576,218.7C672,213,768,235,864,250.7C960,267,1056,277,1152,272C1248,267,1344,245,1392,234.7L1440,224L1440,320L0,320Z">
+      <animate attributeName="d"
+        dur="10s" repeatCount="indefinite"
+        values="
+          M0,256L48,261.3C96,267,192,277,288,266.7C384,256,480,224,576,218.7C672,213,768,235,864,250.7C960,267,1056,277,1152,272C1248,267,1344,245,1392,234.7L1440,224L1440,320L0,320Z;
+          M0,224L48,234.7C96,245,192,267,288,272C384,277,480,267,576,250.7C672,235,768,213,864,218.7C960,224,1056,256,1152,266.7C1248,277,1344,267,1392,261.3L1440,256L1440,320L0,320Z;
+          M0,256L48,261.3C96,267,192,277,288,266.7C384,256,480,224,576,218.7C672,213,768,235,864,250.7C960,267,1056,277,1152,272C1248,267,1344,245,1392,234.7L1440,224L1440,320L0,320Z
+        "/>
+    </path>
+  </svg>
+</div>
+
+<div class="container">
+
+  <!-- PROFILE -->
+  <div class="profile">
+    <div class="avatar-ring"><div class="inner">✈️</div></div>
+    <h1>Amira<span>Travel</span></h1>
+    <p>Handpicked hotel deals across Europe<br>Compare Booking, Airbnb & more — instantly</p>
+    <div class="flags">🇦🇹 🇩🇪 🇮🇹 🇪🇸 🇫🇷 🇬🇷 🇨🇭 🇹🇷</div>
+  </div>
+
+  <!-- BADGES -->
+  <div class="badges">
+    <span class="badge hot">🔥 Best Prices</span>
+    <span class="badge star">⭐ No Extra Fees</span>
+    <span class="badge">⚡ Instant Booking</span>
+    <span class="badge">🏨 All Platforms</span>
+  </div>
+
+  <!-- ALL EUROPE BIG CTA -->
+  <div class="section-label">Start Searching</div>
+
+  <a class="cta-card fire" href="https://www.travelgo.top/?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank">
+    <div class="card-icon">🌍</div>
+    <div class="card-title">All Europe — Best Deals</div>
+    <div class="card-sub">Compare all platforms in one click · Instant results</div>
+    <span class="arrow">›</span>
+  </a>
+
+  <!-- COUNTRY GRID -->
+  <div class="section-label">Browse by Country</div>
+
+  <div class="country-grid">
+    <a class="country-card" href="https://www.travelgo.top/austria?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇦🇹</span>
+      <span class="cc-name">Austria</span>
+      <span class="cc-cities">Vienna · Salzburg · Innsbruck</span>
+    </a>
+    <a class="country-card" href="https://www.travelgo.top/germany?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇩🇪</span>
+      <span class="cc-name">Germany</span>
+      <span class="cc-cities">Berlin · Munich · Hamburg</span>
+    </a>
+    <a class="country-card" href="https://www.travelgo.top/italy?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇮🇹</span>
+      <span class="cc-name">Italy</span>
+      <span class="cc-cities">Rome · Florence · Venice</span>
+    </a>
+    <a class="country-card" href="https://www.travelgo.top/spain?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇪🇸</span>
+      <span class="cc-name">Spain</span>
+      <span class="cc-cities">Barcelona · Madrid · Seville</span>
+    </a>
+    <a class="country-card" href="https://www.travelgo.top/france?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇫🇷</span>
+      <span class="cc-name">France</span>
+      <span class="cc-cities">Paris · Nice · Lyon</span>
+    </a>
+    <a class="country-card" href="https://www.travelgo.top/greece?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇬🇷</span>
+      <span class="cc-name">Greece</span>
+      <span class="cc-cities">Athens · Santorini · Mykonos</span>
+    </a>
+    <a class="country-card" href="https://www.travelgo.top/switzerland?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇨🇭</span>
+      <span class="cc-name">Switzerland</span>
+      <span class="cc-cities">Zurich · Geneva · Lucerne</span>
+    </a>
+    <a class="country-card" href="https://www.travelgo.top/turkey?utm_source=ig&utm_medium=social" target="_blank">
+      <span class="cc-flag">🇹🇷</span>
+      <span class="cc-name">Türkiye</span>
+      <span class="cc-cities">Istanbul · Antalya · Cappadocia</span>
+    </a>
+  </div>
+
+  <!-- STAY22 WIDGET -->
+  <div class="section-label">Find Your Hotel</div>
+
+  <div class="widget-wrap">
+    <div class="widget-header">
+      <span class="wh-icon">🏨</span>
+      <div class="wh-text">
+        <h3>Live Hotel Search</h3>
+        <p>Powered by Stay22 · Best rate guaranteed</p>
+      </div>
+    </div>
+    <iframe
+      id="stay22-widget"
+      width="100%"
+      height="428"
+      src="https://stay22.com/embed/6a2959236f8247fde4878c81"
+      frameborder="0"
+      loading="lazy"
+      allow="geolocation"
+    ></iframe>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 AmiraTravel · Powered by Stay22</p>
+    <p style="margin-top:4px"><a href="https://www.travelgo.top" target="_blank">travelgo.top</a></p>
+  </div>
+
+</div>
+</body>
+</html>
