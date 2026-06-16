@@ -141,7 +141,7 @@
 <script>
   function openMap(title, address) {
     document.getElementById('modalTitle').textContent = title + ' — Best Hotel Deals';
-    document.getElementById('mapFrame').src = 'https://www.stay22.com/embed/gm?aid=amiratravel&address=' + encodeURIComponent(address);
+    const d=new Date();d.setDate(d.getDate()+1);const checkin=d.toISOString().split('T')[0];d.setDate(d.getDate()+1);const checkout=d.toISOString().split('T')[0];document.getElementById('mapFrame').src='https://www.stay22.com/embed/gm?aid=amiratravel&address='+encodeURIComponent(address)+'&checkin='+checkin+'&checkout='+checkout;
     document.getElementById('mapModal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
